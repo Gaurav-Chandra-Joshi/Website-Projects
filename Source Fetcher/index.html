@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Src getter from iframe tag</title>
+</head>
+
+<body>
+    <div id="header">
+        <h1>SRC fetcher</h1>
+        <p>from iframe tag</p>
+    </div>
+    <form action="get">
+        <div class="input">
+            <label for="input">Enter the Iframe data here :-</label>
+            <input type="text" name="iframe" id="input-box">
+        </div>
+        <button id="button">Get the source line</button>
+        <div id="output-container">
+            <label for="output">Get the URL here :-</label>
+            <div class="output">
+                <input type="text" name="src" id="output-box" readonly>
+                <button id="output-copy-button">copy</button>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="script.js"></script>
+
+</html>

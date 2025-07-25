@@ -1,0 +1,17 @@
+This product is made by "GAURAV CHANDRA JOSHI".
+
+This helps us to get the url from any raw data.
+It saves a lot of time and the brainstroming .
+You can increase your productivity (if you use this wisely).
+
+I built this because I was facing a bit of trouble in finding URL from in embed link you can use an youtube link and as well as the other <iframe> tags.
+
+*** How to use ***
+1. Copy the embed code. (from which you want url)
+2. Paste the url in the input box.
+3. Click on the button below the input box.
+4. Now, Click on the copy button to copy the link.
+5. Then, Use the link as you wish.
+
+Thank you for using our product.
+contact:- 011-7272-7373
