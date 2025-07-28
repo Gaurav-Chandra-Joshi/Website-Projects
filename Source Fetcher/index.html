@@ -10,14 +10,17 @@
 
 <body>
     <div id="header">
-        <h1>SRC fetcher</h1>
+        <h1>Meta Data fetcher</h1>
         <p>from iframe tag</p>
     </div>
     <form action="get">
         <div class="input">
             <label for="input">Enter the Iframe data here :-</label>
-            <input type="text" name="iframe" id="input-box">
+            <input type="text" name="iframe" id="input-box" autofocus>
         </div>
+        <select name="What to select" id="what-to-select">
+            <option value="Choose Which one's value You need">Choose Which one's value You need</option>
+        </select>
         <button id="button">Get the source line</button>
         <div id="output-container">
             <label for="output">Get the URL here :-</label>
@@ -27,6 +30,12 @@
             </div>
         </div>
     </form>
+    <div id="meta-data">
+        <ol id="tag-info-list">
+            <li><span id="tag-name"></span></li>
+            <li><span id="attribute-with-value"></span></li>
+        </ol>
+    </div>
 </body>
 <script src="script.js"></script>
 
