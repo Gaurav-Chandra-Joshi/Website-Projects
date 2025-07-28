@@ -1,0 +1,12 @@
+This project is built by Gaurav Chandra Joshi.
+
+This project is taken from the sigma website development playlist.
+In this project I am gonna to use Javascript logic.
+
+***How does it work?***
+=>Here we will have to type something and that will be written by green color on black background (Scene as we see in the hacking movie). And after 1 to 7 seconds (randomly) some new text will come on the screen.
+=>This will work automatically.
+
+Thanks for using our product.
+Contact Us :- 011-7272-7373
+
