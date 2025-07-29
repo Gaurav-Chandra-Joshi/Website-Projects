@@ -1,0 +1,14 @@
+This is programmed by "Gaurav Chandra Joshi".
+
+***How to use?***
+1. First open the website.
+2. Type your task in the input box.
+3. Press enter OR Click on the button beside the input box.
+4. Get the task in the tasklist.
+
+***Features:-***
+1. delete all button deletes the task permanently. (From the local Storage as well).
+2. You can delete a particular task as well.
+
+Thanks for using our product.
+Contact Us:- gauravchandrajoshi280@gmail.com
