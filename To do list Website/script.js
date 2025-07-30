@@ -3,6 +3,8 @@ let task = document.getElementById("task");
 let listContainer = document.getElementById("list-container");
 let deleteAllButton = document.getElementById("delete-all-button");
 
+let listItemArray = new Array();
+
 form.addEventListener("submit", function (e) {
     e.preventDefault();
     let text = task.value.trim();
@@ -12,47 +14,72 @@ form.addEventListener("submit", function (e) {
     }
     task.value = "";
     listAdder(text);
-})
+    deleteParticulatItem();
+});
 
 function listAdder(task) {
+    const checkbox = document.createElement("img");
+    checkbox.src = "Images/empty-checkbox.svg";
+    checkbox.className = "checkbox";
+    checkbox.draggable = false;
+    checkbox.style.cursor = "pointer";
+    console.log(checkbox)
+
     let li = document.createElement("li");
     li.id = "list-item";
-    li.innerHTML = task;
+    li.appendChild(checkbox);
+    li.innerHTML = li.innerHTML + task;
 
     const deleteButton = document.createElement("img");
-    deleteButton.src = "fill-delete.svg";
+    deleteButton.src = "Images/fill-delete.svg";
     deleteButton.className = "delete-button";
     deleteButton.draggable = false;
 
     listItemSaver(task);
 
-    listContainer.appendChild(li)
+    listContainer.appendChild(li);
     listContainer.appendChild(document.createElement("hr"))
     li.appendChild(deleteButton);
 
-    let serialNumber = document.querySelectorAll("li").length - 2;
-    li.innerHTML = `${serialNumber}. ${li.innerHTML}`;
 
+    let serialNumber = document.querySelectorAll("li").length - 2;
+    // li.innerHTML = `${serialNumber}. ${li.innerHTML}`;
+
+    let checkboxArray = Array.from(document.getElementsByClassName("checkbox"));
+    checkboxArray.forEach((e) => {
+        e.addEventListener("click",()=> e.src = "Images/filled-checkbox.svg");
+        e.addEventListener("dblclick",()=> e.src = "Images/empty-checkbox.svg");
+    })
 }
 
-function deleteParticulatItem(){
+
+function deleteParticulatItem() {
     const deleteButtonList = Array.from(document.querySelectorAll(".delete-button"));
-    console.log(deleteButtonList)
-    deleteButtonList.forEach((e)=>{
-        e.addEventListener("click",()=>{
-            console.log(e.parentElement.nextElementSibling);
+    deleteButtonList.forEach((e) => {
+        e.addEventListener("click", async () => {
             e.parentElement.nextSibling.outerHTML = "";
+            // Here we can get the same output by both lines of code.
+            // let elementToRemove = e.parentElement.firstChild.data;
+            let elementToRemove = e.parentElement.textContent;
             e.parentElement.outerHTML = "";
+            console.log(elementToRemove);
+
+
+            let localStorageData = await getData();
+
+            localStorageData = localStorageData.filter(item => item !== elementToRemove);
+            localStorage.setItem("List Item Array", JSON.stringify(localStorageData));
+
+            listItemArray = listItemArray.filter(item => item !== elementToRemove);
+
         })
     })
 }
 
-let listItemArray = new Array();
 function listItemSaver(listItem) {
     listItemArray.push(listItem);
-    console.log(listItemArray);
 
-    let savedData = getData();
+    // let savedData = getData();
 
     localStorage.setItem("List Item Array", JSON.stringify(listItemArray));
 }
@@ -97,4 +124,4 @@ window.onload = () => {
     deleteParticulatItem();
 }
 
-// Now i have to work on that if the item is getting particularly deleted then that should also be deleted from the local storage so that the data will not fetch from the next time.
+// Now I have to add function of checkbox and I have to work on the ui (There I have to put the textcontent and the delete button in the div which will give better ui experience.) .
