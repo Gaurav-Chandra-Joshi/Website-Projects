@@ -5,10 +5,13 @@ This is programmed by "Gaurav Chandra Joshi".
 2. Type your task in the input box.
 3. Press enter OR Click on the button beside the input box.
 4. Get the task in the tasklist.
+5. You can check the task by single click and You can uncheck the task by double click.
 
 ***Features:-***
 1. delete all button deletes the task permanently. (From the local Storage as well).
 2. You can delete a particular task as well.
+
+Note:- "If you are using Javascript to bring the tasks then first relode the website to delete the tasks particularly."
 
 Thanks for using our product.
 Contact Us:- gauravchandrajoshi280@gmail.com
