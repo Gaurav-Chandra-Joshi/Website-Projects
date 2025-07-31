@@ -3,7 +3,7 @@ let task = document.getElementById("task");
 let listContainer = document.getElementById("list-container");
 let deleteAllButton = document.getElementById("delete-all-button");
 
-let listItemArray = new Array();
+let listItemArray = [];
 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -14,114 +14,88 @@ form.addEventListener("submit", function (e) {
     }
     task.value = "";
     listAdder(text);
-    deleteParticulatItem();
 });
 
 function listAdder(task) {
+    const li = document.createElement("li");
+    li.id = "list-item";
+
     const checkbox = document.createElement("img");
     checkbox.src = "Images/empty-checkbox.svg";
     checkbox.className = "checkbox";
     checkbox.draggable = false;
     checkbox.style.cursor = "pointer";
-    console.log(checkbox)
-
-    let li = document.createElement("li");
-    li.id = "list-item";
     li.appendChild(checkbox);
-    li.innerHTML = li.innerHTML + task;
+
+    const taskBox = document.createElement("div");
+    taskBox.className = "task-box";
+    taskBox.style.width = "400px";
+    taskBox.style.paddingLeft = "5px";
+    taskBox.textContent = task;
 
     const deleteButton = document.createElement("img");
     deleteButton.src = "Images/fill-delete.svg";
     deleteButton.className = "delete-button";
     deleteButton.draggable = false;
+    deleteButton.style.cursor = "pointer";
+    taskBox.appendChild(deleteButton);
+
+    li.appendChild(taskBox);
 
     listItemSaver(task);
 
     listContainer.appendChild(li);
-    listContainer.appendChild(document.createElement("hr"))
-    li.appendChild(deleteButton);
 
+    const hr = document.createElement("hr");
+    listContainer.appendChild(hr);
 
-    let serialNumber = document.querySelectorAll("li").length - 2;
-    // li.innerHTML = `${serialNumber}. ${li.innerHTML}`;
+    checkbox.addEventListener("click", () => checkbox.src = "Images/filled-checkbox.svg");
+    checkbox.addEventListener("dblclick", () => checkbox.src = "Images/empty-checkbox.svg");
 
-    let checkboxArray = Array.from(document.getElementsByClassName("checkbox"));
-    checkboxArray.forEach((e) => {
-        e.addEventListener("click",()=> e.src = "Images/filled-checkbox.svg");
-        e.addEventListener("dblclick",()=> e.src = "Images/empty-checkbox.svg");
-    })
-}
+    deleteButton.addEventListener("click", () => {
+        li.remove();
 
+        if (hr && hr.parentNode) {
+            hr.remove();
+        }
 
-function deleteParticulatItem() {
-    const deleteButtonList = Array.from(document.querySelectorAll(".delete-button"));
-    deleteButtonList.forEach((e) => {
-        e.addEventListener("click", async () => {
-            e.parentElement.nextSibling.outerHTML = "";
-            // Here we can get the same output by both lines of code.
-            // let elementToRemove = e.parentElement.firstChild.data;
-            let elementToRemove = e.parentElement.textContent;
-            e.parentElement.outerHTML = "";
-            console.log(elementToRemove);
-
-
-            let localStorageData = await getData();
-
-            localStorageData = localStorageData.filter(item => item !== elementToRemove);
-            localStorage.setItem("List Item Array", JSON.stringify(localStorageData));
-
-            listItemArray = listItemArray.filter(item => item !== elementToRemove);
-
-        })
-    })
+        let elementToRemove = taskBox.textContent;
+        let localStorageData = getData().filter(item => item !== elementToRemove);
+        localStorage.setItem("List Item Array", JSON.stringify(localStorageData));
+        listItemArray = listItemArray.filter(item => item !== elementToRemove);
+    });
 }
 
 function listItemSaver(listItem) {
     listItemArray.push(listItem);
-
-    // let savedData = getData();
-
     localStorage.setItem("List Item Array", JSON.stringify(listItemArray));
 }
 
 function getData() {
     let old = JSON.parse(localStorage.getItem("List Item Array"));
-
-    if (old === null) {
-        old = "";
-    }
-    if (old == "" || typeof old == "string") {
-        old = [];
-    }
-
-    return old;
+    return Array.isArray(old) ? old : [];
 }
 
 function localStorageItemsAdder(lsArray) {
     let localStorageArray = lsArray || [];
-    if (localStorageArray.length >= listContainer.length) {
-        alert("Your list has been uploaded from the local server!");
-        return;
-    } else {
-        for (const element of localStorageArray) {
-            listAdder(element);
-        }
+    for (const element of localStorageArray) {
+        listAdder(element);
     }
 }
 
 deleteAllButton.addEventListener("click", function () {
-    let answer = confirm(`Do you really want to delete all the tasks permantly?`);
-
-    answer === true ? localStorage.clear() : alert("Ha-Ha-Ha");
-    listContainer.innerHTML = "";
+    let answer = confirm(`Do you really want to delete all the tasks permanently?`);
+    if (answer === true) {
+        localStorage.clear();
+        listContainer.innerHTML = "";
+        listItemArray = [];
+    } else {
+        alert("Ha-Ha-Ha");
+    }
 });
 
-
 window.onload = () => {
-    getData();
     const data = getData();
+    listItemArray = [...data];
     localStorageItemsAdder(data);
-    deleteParticulatItem();
-}
-
-// Now I have to add function of checkbox and I have to work on the ui (There I have to put the textcontent and the delete button in the div which will give better ui experience.) .
+};
