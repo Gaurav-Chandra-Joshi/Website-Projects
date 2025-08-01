@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Daily Habit Tracker</title>
+</head>
+
+<body>
+    <main>
+        <h1 id="main-heading">Daily Habit Tracker</h1>
+        <form id="input-section">
+            <input type="text" name="habit" id="input-text" placeholder="Enter a habit" autofocus>
+            <button id="submit-button">Add</button>
+        </form>
+        <section id="habit-container">
+            <div class="habit">
+                <div class="habit-text">
+                    <img src="Images/empty-checkbox.svg" draggable="false">
+                    <span>Drink Water</span>
+                </div>
+                <div clsss="day-box-container" style="display: flex ; gap: 20px;">
+                    <div class="green-box">
+                        <span>M</span>
+                    </div>
+                    <div class="green-box">
+                        <span>T</span>
+                    </div>
+                    <div class="green-box">
+                        <span>W</span>
+                    </div>
+                    <div class="green-box">
+                        <span>T</span>
+                    </div>
+                    <div class="green-box">
+                        <span>F</span>
+                    </div>
+                    <div class="green-box">
+                        <span>S</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+</body>
+<script src="script.js"></script>
+
+</html>
