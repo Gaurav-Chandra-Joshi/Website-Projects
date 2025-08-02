@@ -13,7 +13,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 500px;
+    width: 700px;
     margin: auto;
     gap: 20px;
 }
@@ -37,7 +37,7 @@ main {
     font-size: 20px;
     padding: 0 10px;
     border-radius: 10px;
-    width: 400px;
+    width: 520px;
 }
 
 #input-section button {
@@ -80,7 +80,7 @@ main {
 }
 
 .habit-text span{
-    max-width: 250px;
+    max-width: 350px;
 }
 
 .green-box {
@@ -95,5 +95,19 @@ main {
 }
 
 .green-box span {
+    transform: translatey(-25px);
+}
+
+.yellow-box {
+    background-color: yellow;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #949BA6;
+}
+.yellow-box span {
     transform: translatey(-25px);
 }
