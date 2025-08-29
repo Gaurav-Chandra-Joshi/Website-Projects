@@ -1,0 +1,8 @@
+***Image Data Fetcher***
+
+=>This will first fetch the data according to the submitted file.
+=>Then it will show that data in table on the screen.
+
+Build by:- "Gaurav Chandra Joshi", 1st sem BCA student.
+
+(I promise that I will work on that project later on, after completing this project)
