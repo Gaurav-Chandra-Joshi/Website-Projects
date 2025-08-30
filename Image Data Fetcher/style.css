@@ -11,3 +11,20 @@
 #input-file{
     cursor: pointer;
 }
+
+#data-table{
+    margin: 20px 0;
+}
+#data-table th{
+    background-color: #123456;
+    color: yellow;
+}
+#data-table td{
+    background-color: blue;
+    color: white;
+}
+#data-table th,td{
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+}
