@@ -10,7 +10,6 @@ inputForm.addEventListener('submit', (e) => {
     // Fetching the information related to the inputted file
     fetchInputInformation();
     inputFile.value = "";
-    alert("All files data has been loaded!");
 })
 
 function fetchInputInformation() {
