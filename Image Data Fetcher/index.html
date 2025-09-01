@@ -9,29 +9,26 @@
 </head>
 
 <body>
-    <header>
-        <h1 class="logo">Editing.</h1>
-    </header>
+    <h1 class="logo">File data fetcher.</h1>
     <main>
         <form action="" id="input-form">
-            <input type="file" name="photo" id="input-file" multiple>
-            <button>Submit</button>
+            <input type="file" name="photo" id="input-file" multiple autofocus>
+            <button id="submit-btn">Submit</button>
         </form>
+        <table border="1" id="data-table">
+            <tr>
+                <th>S. No.</th>
+                <th>NAME</th>
+                <th>SIZE(in KB)</th>
+                <th>TYPE</th>
+                <th>Last Modified Date</th>
+                <th>Last Modified Day</th>
+            </tr>
+            <tr>
+                <td colspan="6">You will get to see your data here!</td>
+            </tr>
+        </table>
     </main>
-    <table border="1" id="data-table">
-        <tr>
-            <th>S. No.</th>
-            <th>NAME</th>
-            <th>SIZE</th>
-            <th>TYPE</th>
-        </tr>
-        <tr>
-            <td>1.</td>
-            <td>image.png</td>
-            <td>120239</td>
-            <td>PNG</td>
-        </tr>
-    </table>
 </body>
 <script src="script.js"></script>
 
