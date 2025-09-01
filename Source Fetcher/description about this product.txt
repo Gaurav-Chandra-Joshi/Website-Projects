@@ -1,4 +1,4 @@
-This product is made by "<b>GAURAV CHANDRA JOSHI</b>".
+This product is made by "GAURAV CHANDRA JOSHI".
 
 =>This helps us to get the url from any raw data.
 =>It saves a lot of time and the brainstroming .
