@@ -1,8 +1,15 @@
-***Image Data Fetcher***
+***{ Image Data Fetcher }***
 
-=>This will first fetch the data according to the submitted file.
-=>Then it will show that data in table on the screen.
+This product is made by "GAURAV CHANDRA JOSHI".
+
+***Functionality***
+=>This helps the user in fetching the information from any submitted image file.
+=>This helps the user to not waste their concious energy in going to the file manager and then get the data of each file and so much brainstroming.
+=>This simply takes multiple files or single file and then shows the data (In Tabular Form).
+
+***How to use***
+(i) Input the file.
+(ii) Click on the submit button.
+(iii) Then you'll get the information.
 
 Build by:- "Gaurav Chandra Joshi", 1st sem BCA student.
-
-(I promise that I will work on that project later on, after completing this project)
