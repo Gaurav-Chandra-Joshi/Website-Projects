@@ -32,6 +32,33 @@ main{
     width: 100px;
 }
 
+#work{
+    background-color: #B9DECB;
+    color: black;
+}
+
+#short-break{
+    background-color: #E0EBF9;
+    color: black;
+}
+
+#short-break{
+    background-color: #FACCA8;
+    color: black;
+}
+
+#start{
+    background-color: green;
+}
+
+#pause{
+    background-color: red;
+}
+
+#reset{
+    background-color: orange;
+}
+
 #timer{
     font-size: 50px;
 }
