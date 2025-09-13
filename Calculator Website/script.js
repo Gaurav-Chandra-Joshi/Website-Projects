@@ -1,19 +1,23 @@
 let calc = document.getElementById("calculator-input");
 let buttons = Array.from(document.querySelectorAll(".btn"));
 let answer = document.getElementById("answer");
-calc.addEventListener('input', () => {
-    answer.textContent = eval(calc.textContent);
-})
+// calc.addEventListener('input', () => {
+//     answer.textContent = eval(calc.textContent);
+// })
 console.log(buttons);
 buttons.forEach((e) => {
     e.addEventListener("click", () => {
+        // updateAnswer(answer.textContent,eval(calc.textContent));
         if (e === buttons[16]) {
             calc.textContent += 0;
-            // return;
+            return;
         }
         if (e === buttons[18]) {
-            calc.textContent = calc.textContent.split("").splice(0,calc.textContent.length-1).join("");
+            // calc.textContent = calc.textContent.split("").splice(0,calc.textContent.length-1).join("");
             answer.textContent = eval(calc.textContent);
+            calc.textContent = answer.textContent;
+            answer.style.visibility = "hidden";
+            return;
         }
         if (e === buttons[1]) {
             // let answer = eval(calc.textContent);
@@ -32,6 +36,7 @@ buttons.forEach((e) => {
 let ac = buttons[0];
 ac.addEventListener('click', function () {
     calc.textContent = "0";
+    answer.textContent = "0";
 })
 
 let plusMinus = buttons[1];
@@ -39,3 +44,15 @@ plusMinus.addEventListener('click', function () {
 });
 
 let equalsTo = buttons[18];
+
+function updateAnswer(previousAnswer, newAnswer) {
+    if (typeof newAnswer == "number") {
+        if (previousAnswer != newAnswer) {
+            answer.textContent = Error.isError(newAnswer)?null: newAnswer;
+        }
+    } else {
+        return;
+        // alert('the else is working!')
+    }
+}
+
