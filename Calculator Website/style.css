@@ -21,9 +21,30 @@
   line-height: 10px;
   font-size: 60px;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* #calculator-input{
+  margin-bottom: 30px;
+} */
+
 #calculator-input{
   margin-bottom: 30px;
 }
+/* #calculator-input-box{
+  background-color: black;
+    border: 1px solid brown;
+    width: 100%;
+    height: 70px;
+    outline: none;
+    font-size: 65px;
+    color: white;
+} */
 #answer{
   font-size: 15px;
   margin: 0 0 15px 0;
