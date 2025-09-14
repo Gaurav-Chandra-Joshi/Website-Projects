@@ -63,4 +63,5 @@ resetBtn.addEventListener("click", () => {
 
 /* Here I have to work on the functionality  of remaining time. So that I'll use setInterval again using the remaining time (it will help me in pausing time and when the user will restart the timer).
 => When the pause button will active then there should be a resume button as well.
+=> Saving the pomodoro counts in localStorage();
 */
