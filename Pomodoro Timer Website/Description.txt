@@ -1,0 +1,16 @@
+***{ Pomodoro Time Counter }***
+
+This product is made by "GAURAV CHANDRA JOSHI".
+
+***Functionality***
+=>This helps the user to set the focus time. So that in that time, the user will do productive tasks.
+=>This helps the user to give a specific time to upskill him/her self.
+=>They can start, pause, resume & restart buttons.
+
+***How to use***
+(i) Input the Time.
+(ii) Click on the Start button.
+(iii) Then do whatever you want to do.
+(iv) You can pause, resume or restart. (if you need)
+
+Build by:- "Gaurav Chandra Joshi", 1st sem BCA student.
