@@ -5,6 +5,14 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+body{
+    display: flex;
+    width: 500px;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+}
+
 main{
     display: flex;
     flex-direction: column;
@@ -61,4 +69,11 @@ main{
 
 #timer{
     font-size: 50px;
+}
+
+button{
+    transition: all 0.2s ease-in;
+}
+button:hover{
+    scale: 1.05;
 }
