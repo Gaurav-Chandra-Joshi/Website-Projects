@@ -2,30 +2,71 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro Session</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <main>
-        <h2 id="top-heading">POMODORO TIMER</h2>
-        <div id="mode-buttons">
-            <button class="buttons" id="work">Work</button>
-            <button class="buttons" id="short-break">Short Break</button>
-            <button class="buttons" id="long-break">Long Break</button>
-        </div>
-        <h1 id="timer"><span id="minutes">25</span>:<span id="seconds">00</span></h1>
-        <div id="control-buttons">
-            <button class="buttons" id="start">Start</button>
-            <button class="buttons" id="pause-resume">Pause</button>
-            <button class="buttons" id="reset">Reset</button>
-        </div>
-        <p id="pomodoro-session-count">Pomodoro Completed: 0</p>
-    </main>
-    <audio id="audio" src="alarm.wav" preload="auto"></audio>
+
+  <!-- Top Navigation -->
+  <header class="top-bar">
+    <h1>🍅 Pomodoro</h1>
+    <div class="top-actions">
+      <button id="dark-toggle" title="Dark / Light">🌙</button>
+      <button id="settings">⚙️</button>
+    </div>
+  </header>
+
+  <!-- Mode Switch -->
+  <div id="mode-buttons">
+    <button class="mode-btn active" id="work">Work</button>
+    <button class="mode-btn" id="short-break">Short Break</button>
+    <button class="mode-btn" id="long-break">Long Break</button>
+  </div>
+
+  <!-- Timer Section -->
+  <section class="timer-section">
+    <div class="circle">
+      <h1 id="timer"><span id="minutes">25</span>:<span id="seconds">00</span></h1>
+    </div>
+
+    <!-- Control Buttons -->
+    <div id="control-buttons">
+      <button class="control-btn start" id="start">▶</button>
+      <button class="control-btn pause" id="pause-resume">⏸</button>
+      <button class="control-btn reset" id="reset">🔄</button>
+    </div>
+
+    <!-- Session Indicator -->
+    <div id="session-indicator">
+      <span class="dot filled"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </section>
+
+  <!-- Bottom Section -->
+  <section class="bottom-section">
+    <div class="stats">
+      <h3>📊 Stats</h3>
+      <p>Today: <span id="today-count">0</span> Pomodoros</p>
+      <p>This Week: <span id="week-count">0</span></p>
+    </div>
+
+    <div class="tasks">
+      <h3>✅ Tasks</h3>
+      <ul id="task-list">
+        <li>Add your first task...</li>
+      </ul>
+    </div>
+  </section>
+
+  <audio id="audio" src="alarm.wav" preload="auto"></audio>
+  <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 
 </html>
