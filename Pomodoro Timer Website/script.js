@@ -1,216 +1,135 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+// ========> Toggle Dark <========= 
+let darkToggleButton = document.getElementById("dark-toggle");
+darkToggleButton.addEventListener("click", () => {
+    let body = document.getElementsByTagName("body")[0];
+    body.classList.toggle("dark");
+})
+
+
+// ========> Mode Switching <=========
+let modeBtns = Array.from(document.getElementsByClassName("mode-btn"));
+let minutes = document.getElementById("minutes");
+let seconds = document.getElementById("seconds");
+
+const duration = {
+    work: (25 * 60),
+    short: (5 * 60),
+    long: (15 * 60)
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  color: #222;
+function switchMode(modeName) {
+    modeBtns.forEach((e) => {
+        e.addEventListener("click", () => {
+
+            for (let i = 0; i < modeBtns.length; i++) {
+                modeBtns[i].classList.remove("active");
+            }
+
+            e.classList.add("active");
+            // console.log(e);
+
+            let circle = document.querySelector(".circle");
+            switch (e.textContent) {
+                case "Work":
+                    minutes.textContent = "25";
+                    seconds.textContent = "00";
+                    circle.style.borderColor = "#FF5A5F";
+                    break;
+                case "Short Break":
+                    minutes.textContent = "5";
+                    seconds.textContent = "00";
+                    circle.style.borderColor = "#00C896";
+                    break;
+                case "Long Break":
+                    minutes.textContent = "15";
+                    seconds.textContent = "00";
+                    circle.style.borderColor = "#6C63FF";
+                    break;
+            }
+        })
+    })
+}
+switchMode("modeName");
+
+// ========> Start Button <=========
+let startBtn = document.getElementById("start");
+let isRunning = false;
+let isPaused = false;
+let remainingTime;
+startBtn.addEventListener("click", () => {
+    // startTimer(duration.work);
+    if (isRunning) return;
+    // isRunning = true;
+    remainingTime = startTimer(10);
+})
+
+function startTimer(time) {
+    isRunning = true;
+    if (!isRunning) return;
+
+    console.log("ha ha ha!");
+
+    let timer = setInterval(() => {
+        if (time == 0 || time < 0) {
+            clearInterval(timer);
+            isRunning = false;
+            alert("Your time has reached at 0!");
+            return time;
+        }
+        if (isPaused) {
+            clearInterval(timer);
+            return time;
+        }
+        minutes.textContent = (Math.floor(time / 60)).toString().padStart(2, "0");
+        seconds.textContent = (time % 60).toString().padStart(2, "0");
+        time--;
+    }, 1000);
+
+
+
 }
 
-/* Top Bar */
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
-  box-shadow: #c3aeb333 0px 7px 29px 0px;
+// ========> Pause Button <=========
+let pauseBtn = document.getElementById("pause-resume");
+pauseBtn.addEventListener("click", () => {
+    console.log(remainingTime);
+    pauseTimer(remainingTime);
+    // isRunning = false;
+})
+function pauseTimer(remainingTime) {
+    clearInterval(timer);
+    pauseBtn.textContent = "⏯";
+    isPaused = true;
+    console.log(isPaused);
 }
 
-.top-bar h1 {
-  font-size: 26px;
-  font-weight: 700;
-  color: #FF5A5F;
-  cursor: pointer;
-  /* tomato red branding */
-}
+// ========> Reset Button <=========
+let resetBtn = document.getElementById("reset");
+resetBtn.addEventListener("click", () => {
+    isRunning = false;
+    let currentMode = document.getElementsByClassName("active")[0].textContent;
 
-.top-actions button {
-  background: none;
-  border: none;
-  font-size: 22px;
-  margin-left: 15px;
-  cursor: pointer;
-}
+    switch (currentMode) {
+        case "Work":
+            minutes.textContent = "25";
+            seconds.textContent = "00";
+            break;
+        case "Short Break":
+            minutes.textContent = "5";
+            seconds.textContent = "00";
+            break;
+        case "Long Break":
+            minutes.textContent = "15";
+            seconds.textContent = "00";
+            break;
+    }
 
-/* Mode Buttons */
-#mode-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 20px 0;
-}
+    console.log(currentMode);
 
-.mode-btn {
-  flex: 1;
-  max-width: 160px;
-  padding: 10px 0;
-  border: none;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  background: #ffecec;
-  color: #FF5A5F;
-  transition: all 0.3s ease;
-}
+})
 
-.mode-btn.active {
-  background: #FF5A5F;
-  color: white;
-  box-shadow: 0 0 12px rgba(255, 90, 95, 0.6);
-}
-
-.mode-btn:hover {
-  transform: translateY(-2px);
-}
-
-/* Timer Section */
-.timer-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.circle {
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  border: 18px solid #FF5A5F;
-  /* matches active mode */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-  box-shadow: 0 0 20px rgba(255, 90, 95, 0.4);
-  background: white;
-}
-
-#timer {
-  font-size: 90px;
-  font-weight: 700;
-  color: #222;
-}
-
-/* Control Buttons */
-#control-buttons {
-  display: flex;
-  gap: 25px;
-  margin-bottom: 20px;
-}
-
-.control-btn {
-  width: 100px;
-  height: 50px;
-  border: none;
-  border-radius: 25px;
-  font-size: 22px;
-  font-weight: 600;
-  cursor: pointer;
-  color: white;
-  transition: all 0.2s ease;
-}
-
-.start {
-  background: #00C896;
-}
-
-/* green */
-.pause {
-  background: #6C63FF;
-}
-
-/* violet */
-.reset {
-  background: #FF9500;
-}
-
-/* orange */
-
-.control-btn:hover {
-  transform: scale(1.07);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Session Indicator */
-#session-indicator .dot {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  background: #ddd;
-  border-radius: 50%;
-  margin: 0 5px;
-  cursor: pointer;
-}
-
-#session-indicator .dot.filled {
-  background: #00C896;
-}
-
-/* Bottom Section */
-.bottom-section {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-}
-
-.stats,
-.tasks {
-  flex: 1;
-  margin: 0 15px;
-}
-
-.stats h3,
-.tasks h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #444;
-}
-
-.tasks ul {
-  list-style: none;
-}
-
-.tasks li {
-  padding: 6px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 14px;
-}
-
-/* Dark Mode */
-body.dark {
-  background: linear-gradient(135deg, #232526, #414345);
-  color: #f1f1f1;
-}
-
-body.dark .top-bar {
-  background: rgba(40, 40, 40, 0.7);
-  color: #fff;
-}
-
-body.dark .circle {
-  background: #2b2b2b;
-}
-
-body.dark .circle #timer{
-  color: white;
-}
-
-body.dark .stats,
-body.dark .tasks,
-body.dark .bottom-section {
-  background: rgba(40, 40, 40, 0.8);
-  color: #f1f1f1;
-}
+/*
+    There are many bugs in pausing, starting and reseting this all. Now, I have to first work on the reset btn function.
+    Then I have to work on the pause button feature.
+    Later on I'll jump to the problem which comes when user click multiple timer on start button.
+*/  
