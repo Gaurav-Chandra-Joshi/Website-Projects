@@ -1,10 +1,23 @@
+// ========> Circular Ring <========= 
+const ring = document.querySelector(".progress-ring__circle");
+const radius = ring.r.baseVal.value;
+const circumference = 2 * Math.PI * radius;
+
+ring.style.strokeDasharray = `${circumference} ${circumference}`;
+ring.style.strokeDashoffset = circumference;
+
+function setCircleProgress(percent) {
+    const offset = circumference - (percent / 100) * circumference;
+    ring.style.strokeDashoffset = offset;
+}
+setCircleProgress(100);
+
 // ========> Toggle Dark <========= 
 let darkToggleButton = document.getElementById("dark-toggle");
 darkToggleButton.addEventListener("click", () => {
     let body = document.getElementsByTagName("body")[0];
     body.classList.toggle("dark");
 })
-
 
 // ========> Mode Switching <=========
 let modeBtns = Array.from(document.getElementsByClassName("mode-btn"));
@@ -102,6 +115,9 @@ function startTimer(time) {
 
         minutes.textContent = (Math.floor(time / 60)).toString().padStart(2, "0");
         seconds.textContent = (time % 60).toString().padStart(2, "0");
+
+        let progress = (time / (durations[activeMode] * 60)) * 100;
+        setCircleProgress(progress);
     }, 1000);
 }
 
@@ -134,6 +150,9 @@ function resetTimer() {
     clearInterval(timer);
     timer = null;
     isReseted = true;
+    document.title = "Pomodoro Timer";
+    setCircleProgress(100);
+
 
     if (isPaused) {
         isPaused = false;
@@ -173,17 +192,17 @@ function updateDisplay(currentMode) {
         case "Work":
             minutes.textContent = String(Math.floor(workDuration.value)).padStart(2, '0');
             seconds.textContent = "00";
-            circle.style.borderColor = "#FF5A5F";
+            ring.style.stroke = "#FF5A5F";
             break;
         case "Short Break":
             minutes.textContent = String(Math.floor(shortDuration.value)).padStart(2, '0');
             seconds.textContent = "00";
-            circle.style.borderColor = "#00C896";
+            ring.style.stroke = "#00C896";
             break;
         case "Long Break":
             minutes.textContent = String(Math.floor(longDuration.value)).padStart(2, '0');
             seconds.textContent = "00";
-            circle.style.borderColor = "#6C63FF";
+            ring.style.stroke = "#6C63FF";
             break;
     }
 }
@@ -237,7 +256,3 @@ function updateDurationObject(durationObject) {
 
     updateLocalStorage(durationObject);
 }
-
-/*
-    1. I have to work on the circular timer ring and I have to make that ring function.
-*/
