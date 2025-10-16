@@ -7,7 +7,9 @@
   <title>Pomodoro Timer</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://i.pinimg.com/736x/76/9b/75/769b75e89d8ddd0ab1336f80217372b4.jpg" type="image/jpg">
+  <!-- <link rel="icon" href="https://i.pinimg.com/736x/e0/c8/85/e0c885d42e1e77a21b4b41eae622eb25.jpg" type="image/png"> -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="a.css">
 </head>
 
 <body>
@@ -30,8 +32,15 @@
 
   <!-- Timer Section -->
   <section class="timer-section">
-    <div class="circle">
-      <h1 id="timer"><span id="minutes">25</span>:<span id="seconds">00</span></h1>
+    <div class="circle-container">
+      <svg class="progress-ring" width="320" height="320">
+        <circle class="progress-ring__circle" stroke="#FF5A5F" stroke-width="18" fill="white" r="150" cx="160"
+          cy="160" />
+      </svg>
+
+      <div class="timer-text">
+        <h1 id="timer"><span id="minutes">25</span>:<span id="seconds">00</span></h1>
+      </div>
     </div>
 
     <!-- Control Buttons -->
@@ -91,7 +100,6 @@
 
   <audio id="audio" src="alarm.wav" preload="auto"></audio>
   <script src="script.js"></script>
-  <!-- <script src="app.js"></script> -->
 </body>
 
-</html>
+</html>  
