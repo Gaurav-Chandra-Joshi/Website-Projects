@@ -80,20 +80,23 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 }
 
-.circle {
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  border: 18px solid #FF5A5F;
-  /* matches active mode */
+.circle-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
-  box-shadow: 0 0 20px rgba(255, 90, 95, 0.4);
-  background: white;
+  align-items: center;
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+}
+
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #timer {
@@ -106,7 +109,7 @@ body {
 #control-buttons {
   display: flex;
   gap: 25px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .control-btn {
@@ -292,4 +295,8 @@ body.dark .bottom-section {
   cursor: pointer;
   transition: 0.2s all ease-in;
   font-weight: bolder;
+}
+
+.progress-ring__circle {
+  transition: all 1s ease-out;
 }
