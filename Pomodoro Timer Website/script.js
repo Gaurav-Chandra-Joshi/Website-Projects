@@ -15,9 +15,9 @@ let alarm = document.getElementById("audio");
 
 let currentMode;
 let durations = {
-    work: (25 * 60),
-    short: (5 * 60),
-    long: (15 * 60)
+    work: (25),
+    short: (5),
+    long: (15)
 }
 
 function switchMode() {
@@ -96,9 +96,9 @@ function startTimer(time) {
             return;
         }
 
-        // console.log(time);
-
         remainingTime = time--;
+
+        document.title = `Remaining Time => ${(Math.floor(time / 60)).toString().padStart(2, "0")}:${(time % 60).toString().padStart(2, "0")}`
 
         minutes.textContent = (Math.floor(time / 60)).toString().padStart(2, "0");
         seconds.textContent = (time % 60).toString().padStart(2, "0");
@@ -144,17 +144,20 @@ function resetTimer() {
     updateDisplay(currentMode);
 }
 
+let isSaved = false;
 window.onload = () => {
     switchMode();
 
     let saved = JSON.parse(localStorage.getItem("Durations") || "null");
     if (saved && typeof saved == "object") {
+        isSaved = true;
         durations = saved;
     } else {
         updateLocalStorage(durations);
+        isSaved = false;
     }
+    console.log(`The isSaved is ${isSaved}`)
 
-    console.log(durations);
     updateSettingBoxes();
     updateDisplay("Work");
 }
@@ -168,17 +171,17 @@ let longDuration = document.querySelector("#long-duration");
 function updateDisplay(currentMode) {
     switch (currentMode) {
         case "Work":
-            minutes.textContent = workDuration.value;
+            minutes.textContent = String(Math.floor(workDuration.value)).padStart(2, '0');
             seconds.textContent = "00";
             circle.style.borderColor = "#FF5A5F";
             break;
         case "Short Break":
-            minutes.textContent = shortDuration.value;
+            minutes.textContent = String(Math.floor(shortDuration.value)).padStart(2, '0');
             seconds.textContent = "00";
             circle.style.borderColor = "#00C896";
             break;
         case "Long Break":
-            minutes.textContent = longDuration.value;
+            minutes.textContent = String(Math.floor(longDuration.value)).padStart(2, '0');
             seconds.textContent = "00";
             circle.style.borderColor = "#6C63FF";
             break;
@@ -197,30 +200,42 @@ function settingOff() {
 function saveSetting() {
     alert("Setting Saved!")
     updateDisplay(currentMode);
-    updateLocalStorage(durations);
-    updateDurationObject();
+
+    updateDurationObject(durations);
     durations = JSON.parse(localStorage.getItem("Durations"));
     settingOff();
 }
 
+function updateSettingBoxes() {
+    workDuration.value = (durations.work) / 60;
+    shortDuration.value = (durations.short) / 60;
+    longDuration.value = (durations.long) / 60;
+}
 function updateSettingBoxes() {
     workDuration.value = durations.work;
     shortDuration.value = durations.short;
     longDuration.value = durations.long;
 }
 
+let firstTime = localStorage.getItem("Durations") === (null || "") ? true : false;
 function updateLocalStorage(durationObject) {
+    if (firstTime) {
+        durationObject.work = (durations.work) / 60;
+        durationObject.short = (durations.short) / 60;
+        durationObject.long = (durations.long) / 60;
+    }
     localStorage.setItem("Durations", JSON.stringify(durationObject));
 }
 
 let settingInputBoxDurations;
-function updateDurationObject() {
+function updateDurationObject(durationObject) {
     durations.work = Number(workDuration.value);
     durations.short = Number(shortDuration.value);
     durations.long = Number(longDuration.value);
 
-    console.log(durations);
-    updateLocalStorage(durations);
+    console.log(durationObject);
+
+    updateLocalStorage(durationObject);
 }
 
 /*
