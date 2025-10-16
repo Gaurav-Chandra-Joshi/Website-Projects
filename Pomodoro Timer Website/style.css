@@ -231,7 +231,7 @@ body.dark .bottom-section {
   z-index: 999;
 }
 
-.modal *{
+.modal * {
   color: black;
 }
 
